@@ -1,0 +1,78 @@
+type Link {
+  id: ID! @id(strategy: AUTO)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  description: String!
+  url: String!
+  postedBy: User
+  votes: [Vote!]!
+}
+
+type User {
+    id: ID! @id(strategy: AUTO)
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+    name: String!
+    email: String! @unique
+    password: String!
+    links: [Link!]!
+    votes: [Vote!]!
+}
+
+type Vote {
+    id: ID! @id(strategy: AUTO)
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+    link: Link!
+    user: User!
+}
+
+type Team {
+    id: ID! @id(strategy: AUTO)
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+    name: String!
+    players: [Player]
+    season: Season!
+}
+
+type Player {
+    id: ID! @id(strategy: AUTO)
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+    name: String!
+    team: Team!
+}
+
+type Season {
+  id: ID! @id(strategy: AUTO)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  name: String!
+  year: Int!
+  teams: [Team]
+}
+
+type Roller {
+  id: ID! @id(strategy: AUTO)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  name: String!
+  gift: [Gift]
+}
+
+type Gift {
+    id: ID! @id(strategy: AUTO)
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+    name: String!
+    roller: [Roller]
+}
+
+type doGift {
+    id: ID! @id(strategy: AUTO)
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+    roller: Roller!
+    gift: Gift!
+}
