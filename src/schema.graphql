@@ -7,6 +7,7 @@ type Query {
   rollers: [Roller]
   roller(id: ID!): Roller!
   gifts: [Gift]
+  gift: Gift
 }
 
 type Mutation {
@@ -19,7 +20,7 @@ type Mutation {
   season(name: String!, year: Int!): Season!
   roller(name: String!): Roller
   gift(name: String!): Gift
-  doGift(rollerId: ID!, giftId: ID!): Gift
+  updateGift(id: ID!, rollerID: ID!): Gift
 }
 
 type Season {
@@ -66,19 +67,13 @@ type User {
 type Roller {
   id: ID!
   name: String!
-  gift: [Gift]
+  gift: Gift
 }
 
 type Gift {
   id: ID!
   name: String!
-  roller: [Roller]
-}
-
-type doGift {
-  id: ID!
-  roller: Roller!
-  gift: Gift!
+  roller: Roller
 }
 
 type Subscription {

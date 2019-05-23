@@ -82,11 +82,15 @@ async function gift(parent, args, context, info) {
     });
 }
 
-async function doGift(parent, args, context, info) {
-    return await context.prisma.createdoGift({
-        roller: { connect: { id: args.rollerId } },
-        gift: { connect: { id: args.giftId}}
-    })
+async function updateGift(parent, args, context, info) {
+    return await context.prisma.updateGift({
+        where: {
+            id: args.id
+        },
+        data: {
+            roller: { connect: { id: args.rollerID } }
+        }
+    });
 }
 
 module.exports = {
@@ -98,5 +102,5 @@ module.exports = {
     player,
     roller,
     gift,
-    doGift
+    updateGift
 }

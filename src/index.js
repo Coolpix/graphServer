@@ -11,7 +11,6 @@ const Team = require('./resolvers/Team');
 const Season = require('./resolvers/Season');
 const Roller = require('./resolvers/Roller');
 const Gift = require('./resolvers/Gift');
-const doGift = require('./resolvers/createGift');
 const Subscription = require('./resolvers/Subscription');
 
 const resolvers = {
@@ -25,8 +24,7 @@ const resolvers = {
     Team,
     Season,
     Roller,
-    Gift,
-    doGift
+    Gift
 };
 
 const server = new GraphQLServer({

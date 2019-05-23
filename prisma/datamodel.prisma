@@ -58,7 +58,7 @@ type Roller {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
   name: String!
-  gift: [Gift]
+  gift: Gift @relation(link: TABLE)
 }
 
 type Gift {
@@ -66,13 +66,5 @@ type Gift {
     createdAt: DateTime! @createdAt
     updatedAt: DateTime! @updatedAt
     name: String!
-    roller: [Roller]
-}
-
-type doGift {
-    id: ID! @id(strategy: AUTO)
-    createdAt: DateTime! @createdAt
-    updatedAt: DateTime! @updatedAt
-    roller: Roller!
-    gift: Gift!
+    roller: Roller
 }

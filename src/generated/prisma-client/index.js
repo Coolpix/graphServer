@@ -35,10 +35,6 @@ var models = [
   {
     name: "Gift",
     embedded: false
-  },
-  {
-    name: "doGift",
-    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({

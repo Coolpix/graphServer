@@ -3,11 +3,7 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregatedoGift {
-  count: Int!
-}
-
-type AggregateGift {
+/* GraphQL */ `type AggregateGift {
   count: Int!
 }
 
@@ -45,117 +41,12 @@ type BatchPayload {
 
 scalar DateTime
 
-type doGift {
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  roller: Roller!
-  gift: Gift!
-}
-
-type doGiftConnection {
-  pageInfo: PageInfo!
-  edges: [doGiftEdge]!
-  aggregate: AggregatedoGift!
-}
-
-input doGiftCreateInput {
-  id: ID
-  roller: RollerCreateOneInput!
-  gift: GiftCreateOneInput!
-}
-
-type doGiftEdge {
-  node: doGift!
-  cursor: String!
-}
-
-enum doGiftOrderByInput {
-  id_ASC
-  id_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-type doGiftPreviousValues {
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type doGiftSubscriptionPayload {
-  mutation: MutationType!
-  node: doGift
-  updatedFields: [String!]
-  previousValues: doGiftPreviousValues
-}
-
-input doGiftSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: doGiftWhereInput
-  AND: [doGiftSubscriptionWhereInput!]
-  OR: [doGiftSubscriptionWhereInput!]
-  NOT: [doGiftSubscriptionWhereInput!]
-}
-
-input doGiftUpdateInput {
-  roller: RollerUpdateOneRequiredInput
-  gift: GiftUpdateOneRequiredInput
-}
-
-input doGiftWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  roller: RollerWhereInput
-  gift: GiftWhereInput
-  AND: [doGiftWhereInput!]
-  OR: [doGiftWhereInput!]
-  NOT: [doGiftWhereInput!]
-}
-
-input doGiftWhereUniqueInput {
-  id: ID
-}
-
 type Gift {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
-  roller(where: RollerWhereInput, orderBy: RollerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Roller!]
+  roller: Roller
 }
 
 type GiftConnection {
@@ -167,16 +58,11 @@ type GiftConnection {
 input GiftCreateInput {
   id: ID
   name: String!
-  roller: RollerCreateManyWithoutGiftInput
+  roller: RollerCreateOneWithoutGiftInput
 }
 
-input GiftCreateManyWithoutRollerInput {
-  create: [GiftCreateWithoutRollerInput!]
-  connect: [GiftWhereUniqueInput!]
-}
-
-input GiftCreateOneInput {
-  create: GiftCreateInput
+input GiftCreateOneWithoutRollerInput {
+  create: GiftCreateWithoutRollerInput
   connect: GiftWhereUniqueInput
 }
 
@@ -208,56 +94,6 @@ type GiftPreviousValues {
   name: String!
 }
 
-input GiftScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  AND: [GiftScalarWhereInput!]
-  OR: [GiftScalarWhereInput!]
-  NOT: [GiftScalarWhereInput!]
-}
-
 type GiftSubscriptionPayload {
   mutation: MutationType!
   node: Gift
@@ -276,45 +112,21 @@ input GiftSubscriptionWhereInput {
   NOT: [GiftSubscriptionWhereInput!]
 }
 
-input GiftUpdateDataInput {
-  name: String
-  roller: RollerUpdateManyWithoutGiftInput
-}
-
 input GiftUpdateInput {
   name: String
-  roller: RollerUpdateManyWithoutGiftInput
-}
-
-input GiftUpdateManyDataInput {
-  name: String
+  roller: RollerUpdateOneWithoutGiftInput
 }
 
 input GiftUpdateManyMutationInput {
   name: String
 }
 
-input GiftUpdateManyWithoutRollerInput {
-  create: [GiftCreateWithoutRollerInput!]
-  delete: [GiftWhereUniqueInput!]
-  connect: [GiftWhereUniqueInput!]
-  set: [GiftWhereUniqueInput!]
-  disconnect: [GiftWhereUniqueInput!]
-  update: [GiftUpdateWithWhereUniqueWithoutRollerInput!]
-  upsert: [GiftUpsertWithWhereUniqueWithoutRollerInput!]
-  deleteMany: [GiftScalarWhereInput!]
-  updateMany: [GiftUpdateManyWithWhereNestedInput!]
-}
-
-input GiftUpdateManyWithWhereNestedInput {
-  where: GiftScalarWhereInput!
-  data: GiftUpdateManyDataInput!
-}
-
-input GiftUpdateOneRequiredInput {
-  create: GiftCreateInput
-  update: GiftUpdateDataInput
-  upsert: GiftUpsertNestedInput
+input GiftUpdateOneWithoutRollerInput {
+  create: GiftCreateWithoutRollerInput
+  update: GiftUpdateWithoutRollerDataInput
+  upsert: GiftUpsertWithoutRollerInput
+  delete: Boolean
+  disconnect: Boolean
   connect: GiftWhereUniqueInput
 }
 
@@ -322,18 +134,7 @@ input GiftUpdateWithoutRollerDataInput {
   name: String
 }
 
-input GiftUpdateWithWhereUniqueWithoutRollerInput {
-  where: GiftWhereUniqueInput!
-  data: GiftUpdateWithoutRollerDataInput!
-}
-
-input GiftUpsertNestedInput {
-  update: GiftUpdateDataInput!
-  create: GiftCreateInput!
-}
-
-input GiftUpsertWithWhereUniqueWithoutRollerInput {
-  where: GiftWhereUniqueInput!
+input GiftUpsertWithoutRollerInput {
   update: GiftUpdateWithoutRollerDataInput!
   create: GiftCreateWithoutRollerInput!
 }
@@ -383,9 +184,7 @@ input GiftWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  roller_every: RollerWhereInput
-  roller_some: RollerWhereInput
-  roller_none: RollerWhereInput
+  roller: RollerWhereInput
   AND: [GiftWhereInput!]
   OR: [GiftWhereInput!]
   NOT: [GiftWhereInput!]
@@ -742,11 +541,6 @@ type Mutation {
   upsertVote(where: VoteWhereUniqueInput!, create: VoteCreateInput!, update: VoteUpdateInput!): Vote!
   deleteVote(where: VoteWhereUniqueInput!): Vote
   deleteManyVotes(where: VoteWhereInput): BatchPayload!
-  createdoGift(data: doGiftCreateInput!): doGift!
-  updatedoGift(data: doGiftUpdateInput!, where: doGiftWhereUniqueInput!): doGift
-  upsertdoGift(where: doGiftWhereUniqueInput!, create: doGiftCreateInput!, update: doGiftUpdateInput!): doGift!
-  deletedoGift(where: doGiftWhereUniqueInput!): doGift
-  deleteManydoGifts(where: doGiftWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1012,9 +806,6 @@ type Query {
   vote(where: VoteWhereUniqueInput!): Vote
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote]!
   votesConnection(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection!
-  doGift(where: doGiftWhereUniqueInput!): doGift
-  doGifts(where: doGiftWhereInput, orderBy: doGiftOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [doGift]!
-  doGiftsConnection(where: doGiftWhereInput, orderBy: doGiftOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): doGiftConnection!
   node(id: ID!): Node
 }
 
@@ -1023,7 +814,7 @@ type Roller {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
-  gift(where: GiftWhereInput, orderBy: GiftOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Gift!]
+  gift: Gift
 }
 
 type RollerConnection {
@@ -1035,16 +826,11 @@ type RollerConnection {
 input RollerCreateInput {
   id: ID
   name: String!
-  gift: GiftCreateManyWithoutRollerInput
+  gift: GiftCreateOneWithoutRollerInput
 }
 
-input RollerCreateManyWithoutGiftInput {
-  create: [RollerCreateWithoutGiftInput!]
-  connect: [RollerWhereUniqueInput!]
-}
-
-input RollerCreateOneInput {
-  create: RollerCreateInput
+input RollerCreateOneWithoutGiftInput {
+  create: RollerCreateWithoutGiftInput
   connect: RollerWhereUniqueInput
 }
 
@@ -1076,56 +862,6 @@ type RollerPreviousValues {
   name: String!
 }
 
-input RollerScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  AND: [RollerScalarWhereInput!]
-  OR: [RollerScalarWhereInput!]
-  NOT: [RollerScalarWhereInput!]
-}
-
 type RollerSubscriptionPayload {
   mutation: MutationType!
   node: Roller
@@ -1144,45 +880,21 @@ input RollerSubscriptionWhereInput {
   NOT: [RollerSubscriptionWhereInput!]
 }
 
-input RollerUpdateDataInput {
-  name: String
-  gift: GiftUpdateManyWithoutRollerInput
-}
-
 input RollerUpdateInput {
   name: String
-  gift: GiftUpdateManyWithoutRollerInput
-}
-
-input RollerUpdateManyDataInput {
-  name: String
+  gift: GiftUpdateOneWithoutRollerInput
 }
 
 input RollerUpdateManyMutationInput {
   name: String
 }
 
-input RollerUpdateManyWithoutGiftInput {
-  create: [RollerCreateWithoutGiftInput!]
-  delete: [RollerWhereUniqueInput!]
-  connect: [RollerWhereUniqueInput!]
-  set: [RollerWhereUniqueInput!]
-  disconnect: [RollerWhereUniqueInput!]
-  update: [RollerUpdateWithWhereUniqueWithoutGiftInput!]
-  upsert: [RollerUpsertWithWhereUniqueWithoutGiftInput!]
-  deleteMany: [RollerScalarWhereInput!]
-  updateMany: [RollerUpdateManyWithWhereNestedInput!]
-}
-
-input RollerUpdateManyWithWhereNestedInput {
-  where: RollerScalarWhereInput!
-  data: RollerUpdateManyDataInput!
-}
-
-input RollerUpdateOneRequiredInput {
-  create: RollerCreateInput
-  update: RollerUpdateDataInput
-  upsert: RollerUpsertNestedInput
+input RollerUpdateOneWithoutGiftInput {
+  create: RollerCreateWithoutGiftInput
+  update: RollerUpdateWithoutGiftDataInput
+  upsert: RollerUpsertWithoutGiftInput
+  delete: Boolean
+  disconnect: Boolean
   connect: RollerWhereUniqueInput
 }
 
@@ -1190,18 +902,7 @@ input RollerUpdateWithoutGiftDataInput {
   name: String
 }
 
-input RollerUpdateWithWhereUniqueWithoutGiftInput {
-  where: RollerWhereUniqueInput!
-  data: RollerUpdateWithoutGiftDataInput!
-}
-
-input RollerUpsertNestedInput {
-  update: RollerUpdateDataInput!
-  create: RollerCreateInput!
-}
-
-input RollerUpsertWithWhereUniqueWithoutGiftInput {
-  where: RollerWhereUniqueInput!
+input RollerUpsertWithoutGiftInput {
   update: RollerUpdateWithoutGiftDataInput!
   create: RollerCreateWithoutGiftInput!
 }
@@ -1251,9 +952,7 @@ input RollerWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  gift_every: GiftWhereInput
-  gift_some: GiftWhereInput
-  gift_none: GiftWhereInput
+  gift: GiftWhereInput
   AND: [RollerWhereInput!]
   OR: [RollerWhereInput!]
   NOT: [RollerWhereInput!]
@@ -1442,7 +1141,6 @@ type Subscription {
   team(where: TeamSubscriptionWhereInput): TeamSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   vote(where: VoteSubscriptionWhereInput): VoteSubscriptionPayload
-  doGift(where: doGiftSubscriptionWhereInput): doGiftSubscriptionPayload
 }
 
 type Team {

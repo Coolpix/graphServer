@@ -49,6 +49,12 @@ async function gifts(parent, args, context, info) {
     return gifts;
 }
 
+async function gift(parent, args, context, info) {
+    const gift = await context.prisma.gift({id: args.id});
+
+    return gift;
+}
+
 async function roller(parent, args, context, info) {
     const roller = await context.prisma.roller({id: args.id});
 
@@ -61,5 +67,6 @@ module.exports = {
     feed,
     rollers,
     roller,
-    gifts
+    gifts,
+    gift
 }
