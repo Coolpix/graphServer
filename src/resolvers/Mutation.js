@@ -93,6 +93,14 @@ async function updateGift(parent, args, context, info) {
     });
 }
 
+async function deleteGift(parent, args, context, info) {
+    return await context.prisma.deleteGift({ id: args.id });
+}
+
+async function deleteRoller(parent, args, context, info) {
+    return await context.prisma.deleteRoller({ id: args.id });
+}
+
 module.exports = {
     signup,
     login,
@@ -102,5 +110,7 @@ module.exports = {
     player,
     roller,
     gift,
-    updateGift
+    updateGift,
+    deleteGift,
+    deleteRoller
 }

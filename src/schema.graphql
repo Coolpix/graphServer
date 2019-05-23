@@ -21,6 +21,8 @@ type Mutation {
   roller(name: String!): Roller
   gift(name: String!): Gift
   updateGift(id: ID!, rollerID: ID!): Gift
+  deleteGift(id: ID!): Gift
+  deleteRoller(id: ID!): Gift
 }
 
 type Season {
