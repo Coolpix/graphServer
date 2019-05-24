@@ -398,7 +398,9 @@ export type GiftOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC"
   | "name_ASC"
-  | "name_DESC";
+  | "name_DESC"
+  | "photo_ASC"
+  | "photo_DESC";
 
 export type PlayerOrderByInput =
   | "id_ASC"
@@ -428,7 +430,9 @@ export type RollerOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC"
   | "name_ASC"
-  | "name_DESC";
+  | "name_DESC"
+  | "avatar_ASC"
+  | "avatar_DESC";
 
 export type SeasonOrderByInput =
   | "id_ASC"
@@ -1110,11 +1114,13 @@ export interface RollerCreateOneWithoutGiftInput {
 
 export interface RollerUpdateManyMutationInput {
   name?: Maybe<String>;
+  avatar?: Maybe<String>;
 }
 
 export interface GiftUpdateInput {
   name?: Maybe<String>;
   roller?: Maybe<RollerUpdateOneWithoutGiftInput>;
+  photo?: Maybe<String>;
 }
 
 export interface VoteUpdateWithoutLinkDataInput {
@@ -1123,6 +1129,7 @@ export interface VoteUpdateWithoutLinkDataInput {
 
 export interface RollerUpdateWithoutGiftDataInput {
   name?: Maybe<String>;
+  avatar?: Maybe<String>;
 }
 
 export interface UserUpdateOneRequiredWithoutVotesInput {
@@ -1134,6 +1141,7 @@ export interface UserUpdateOneRequiredWithoutVotesInput {
 
 export interface GiftUpdateManyMutationInput {
   name?: Maybe<String>;
+  photo?: Maybe<String>;
 }
 
 export interface UserUpdateWithoutVotesDataInput {
@@ -1337,6 +1345,20 @@ export interface RollerWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  avatar?: Maybe<String>;
+  avatar_not?: Maybe<String>;
+  avatar_in?: Maybe<String[] | String>;
+  avatar_not_in?: Maybe<String[] | String>;
+  avatar_lt?: Maybe<String>;
+  avatar_lte?: Maybe<String>;
+  avatar_gt?: Maybe<String>;
+  avatar_gte?: Maybe<String>;
+  avatar_contains?: Maybe<String>;
+  avatar_not_contains?: Maybe<String>;
+  avatar_starts_with?: Maybe<String>;
+  avatar_not_starts_with?: Maybe<String>;
+  avatar_ends_with?: Maybe<String>;
+  avatar_not_ends_with?: Maybe<String>;
   gift?: Maybe<GiftWhereInput>;
   AND?: Maybe<RollerWhereInput[] | RollerWhereInput>;
   OR?: Maybe<RollerWhereInput[] | RollerWhereInput>;
@@ -1439,6 +1461,7 @@ export interface TeamCreateWithoutPlayersInput {
 export interface RollerCreateWithoutGiftInput {
   id?: Maybe<ID_Input>;
   name: String;
+  avatar: String;
 }
 
 export interface SeasonCreateOneWithoutTeamsInput {
@@ -1578,6 +1601,7 @@ export interface GiftCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   roller?: Maybe<RollerCreateOneWithoutGiftInput>;
+  photo: String;
 }
 
 export interface TeamUpsertWithoutPlayersInput {
@@ -1602,6 +1626,7 @@ export type PlayerWhereUniqueInput = AtLeastOne<{
 export interface RollerCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
+  avatar: String;
   gift?: Maybe<GiftCreateOneWithoutRollerInput>;
 }
 
@@ -1668,6 +1693,7 @@ export interface SeasonUpdateInput {
 
 export interface GiftUpdateWithoutRollerDataInput {
   name?: Maybe<String>;
+  photo?: Maybe<String>;
 }
 
 export interface GiftUpdateOneWithoutRollerInput {
@@ -1681,12 +1707,14 @@ export interface GiftUpdateOneWithoutRollerInput {
 
 export interface RollerUpdateInput {
   name?: Maybe<String>;
+  avatar?: Maybe<String>;
   gift?: Maybe<GiftUpdateOneWithoutRollerInput>;
 }
 
 export interface GiftCreateWithoutRollerInput {
   id?: Maybe<ID_Input>;
   name: String;
+  photo: String;
 }
 
 export interface RollerUpdateOneWithoutGiftInput {
@@ -1748,6 +1776,20 @@ export interface GiftWhereInput {
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
   roller?: Maybe<RollerWhereInput>;
+  photo?: Maybe<String>;
+  photo_not?: Maybe<String>;
+  photo_in?: Maybe<String[] | String>;
+  photo_not_in?: Maybe<String[] | String>;
+  photo_lt?: Maybe<String>;
+  photo_lte?: Maybe<String>;
+  photo_gt?: Maybe<String>;
+  photo_gte?: Maybe<String>;
+  photo_contains?: Maybe<String>;
+  photo_not_contains?: Maybe<String>;
+  photo_starts_with?: Maybe<String>;
+  photo_not_starts_with?: Maybe<String>;
+  photo_ends_with?: Maybe<String>;
+  photo_not_ends_with?: Maybe<String>;
   AND?: Maybe<GiftWhereInput[] | GiftWhereInput>;
   OR?: Maybe<GiftWhereInput[] | GiftWhereInput>;
   NOT?: Maybe<GiftWhereInput[] | GiftWhereInput>;
@@ -2159,6 +2201,7 @@ export interface Gift {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   name: String;
+  photo: String;
 }
 
 export interface GiftPromise extends Promise<Gift>, Fragmentable {
@@ -2167,6 +2210,7 @@ export interface GiftPromise extends Promise<Gift>, Fragmentable {
   updatedAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
   roller: <T = RollerPromise>() => T;
+  photo: () => Promise<String>;
 }
 
 export interface GiftSubscription
@@ -2177,6 +2221,7 @@ export interface GiftSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   name: () => Promise<AsyncIterator<String>>;
   roller: <T = RollerSubscription>() => T;
+  photo: () => Promise<AsyncIterator<String>>;
 }
 
 export interface GiftNullablePromise
@@ -2187,6 +2232,7 @@ export interface GiftNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
   roller: <T = RollerPromise>() => T;
+  photo: () => Promise<String>;
 }
 
 export interface AggregateTeam {
@@ -2256,6 +2302,7 @@ export interface GiftPreviousValues {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   name: String;
+  photo: String;
 }
 
 export interface GiftPreviousValuesPromise
@@ -2265,6 +2312,7 @@ export interface GiftPreviousValuesPromise
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
+  photo: () => Promise<String>;
 }
 
 export interface GiftPreviousValuesSubscription
@@ -2274,6 +2322,7 @@ export interface GiftPreviousValuesSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   name: () => Promise<AsyncIterator<String>>;
+  photo: () => Promise<AsyncIterator<String>>;
 }
 
 export interface SeasonEdge {
@@ -2419,6 +2468,7 @@ export interface Roller {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   name: String;
+  avatar: String;
 }
 
 export interface RollerPromise extends Promise<Roller>, Fragmentable {
@@ -2426,6 +2476,7 @@ export interface RollerPromise extends Promise<Roller>, Fragmentable {
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
+  avatar: () => Promise<String>;
   gift: <T = GiftPromise>() => T;
 }
 
@@ -2436,6 +2487,7 @@ export interface RollerSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   name: () => Promise<AsyncIterator<String>>;
+  avatar: () => Promise<AsyncIterator<String>>;
   gift: <T = GiftSubscription>() => T;
 }
 
@@ -2446,6 +2498,7 @@ export interface RollerNullablePromise
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
+  avatar: () => Promise<String>;
   gift: <T = GiftPromise>() => T;
 }
 
@@ -2717,6 +2770,7 @@ export interface RollerPreviousValues {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   name: String;
+  avatar: String;
 }
 
 export interface RollerPreviousValuesPromise
@@ -2726,6 +2780,7 @@ export interface RollerPreviousValuesPromise
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   name: () => Promise<String>;
+  avatar: () => Promise<String>;
 }
 
 export interface RollerPreviousValuesSubscription
@@ -2735,6 +2790,7 @@ export interface RollerPreviousValuesSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   name: () => Promise<AsyncIterator<String>>;
+  avatar: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateRoller {

@@ -18,8 +18,8 @@ type Mutation {
   team(name: String!): Team!
   player(name: String!, teamId: ID!): Player!
   season(name: String!, year: Int!): Season!
-  roller(name: String!): Roller
-  gift(name: String!): Gift
+  roller(name: String!, avatar: String!): Roller
+  gift(name: String!, photo: String!): Gift
   updateGift(id: ID!, rollerID: ID!): Gift
   deleteGift(id: ID!): Gift
   deleteRoller(id: ID!): Gift
@@ -70,12 +70,14 @@ type Roller {
   id: ID!
   name: String!
   gift: Gift
+  avatar: String!
 }
 
 type Gift {
   id: ID!
   name: String!
   roller: Roller
+  photo: String!
 }
 
 type Subscription {

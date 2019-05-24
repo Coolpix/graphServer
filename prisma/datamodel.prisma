@@ -58,6 +58,7 @@ type Roller {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
   name: String!
+  avatar: String!
   gift: Gift @relation(link: TABLE)
 }
 
@@ -67,4 +68,5 @@ type Gift {
     updatedAt: DateTime! @updatedAt
     name: String!
     roller: Roller
+    photo: String!
 }

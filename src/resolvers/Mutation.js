@@ -72,13 +72,15 @@ async function player(parent, args, context, info) {
 
 async function roller(parent, args, context, info) {
     return await context.prisma.createRoller({
-        name: args.name
+        name: args.name,
+        avatar: args.avatar
     });
 }
 
 async function gift(parent, args, context, info) {
     return await context.prisma.createGift({
-        name: args.name
+        name: args.name,
+        photo: args.photo
     });
 }
 

@@ -47,6 +47,7 @@ type Gift {
   updatedAt: DateTime!
   name: String!
   roller: Roller
+  photo: String!
 }
 
 type GiftConnection {
@@ -59,6 +60,7 @@ input GiftCreateInput {
   id: ID
   name: String!
   roller: RollerCreateOneWithoutGiftInput
+  photo: String!
 }
 
 input GiftCreateOneWithoutRollerInput {
@@ -69,6 +71,7 @@ input GiftCreateOneWithoutRollerInput {
 input GiftCreateWithoutRollerInput {
   id: ID
   name: String!
+  photo: String!
 }
 
 type GiftEdge {
@@ -85,6 +88,8 @@ enum GiftOrderByInput {
   updatedAt_DESC
   name_ASC
   name_DESC
+  photo_ASC
+  photo_DESC
 }
 
 type GiftPreviousValues {
@@ -92,6 +97,7 @@ type GiftPreviousValues {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
+  photo: String!
 }
 
 type GiftSubscriptionPayload {
@@ -115,10 +121,12 @@ input GiftSubscriptionWhereInput {
 input GiftUpdateInput {
   name: String
   roller: RollerUpdateOneWithoutGiftInput
+  photo: String
 }
 
 input GiftUpdateManyMutationInput {
   name: String
+  photo: String
 }
 
 input GiftUpdateOneWithoutRollerInput {
@@ -132,6 +140,7 @@ input GiftUpdateOneWithoutRollerInput {
 
 input GiftUpdateWithoutRollerDataInput {
   name: String
+  photo: String
 }
 
 input GiftUpsertWithoutRollerInput {
@@ -185,6 +194,20 @@ input GiftWhereInput {
   name_ends_with: String
   name_not_ends_with: String
   roller: RollerWhereInput
+  photo: String
+  photo_not: String
+  photo_in: [String!]
+  photo_not_in: [String!]
+  photo_lt: String
+  photo_lte: String
+  photo_gt: String
+  photo_gte: String
+  photo_contains: String
+  photo_not_contains: String
+  photo_starts_with: String
+  photo_not_starts_with: String
+  photo_ends_with: String
+  photo_not_ends_with: String
   AND: [GiftWhereInput!]
   OR: [GiftWhereInput!]
   NOT: [GiftWhereInput!]
@@ -814,6 +837,7 @@ type Roller {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
+  avatar: String!
   gift: Gift
 }
 
@@ -826,6 +850,7 @@ type RollerConnection {
 input RollerCreateInput {
   id: ID
   name: String!
+  avatar: String!
   gift: GiftCreateOneWithoutRollerInput
 }
 
@@ -837,6 +862,7 @@ input RollerCreateOneWithoutGiftInput {
 input RollerCreateWithoutGiftInput {
   id: ID
   name: String!
+  avatar: String!
 }
 
 type RollerEdge {
@@ -853,6 +879,8 @@ enum RollerOrderByInput {
   updatedAt_DESC
   name_ASC
   name_DESC
+  avatar_ASC
+  avatar_DESC
 }
 
 type RollerPreviousValues {
@@ -860,6 +888,7 @@ type RollerPreviousValues {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
+  avatar: String!
 }
 
 type RollerSubscriptionPayload {
@@ -882,11 +911,13 @@ input RollerSubscriptionWhereInput {
 
 input RollerUpdateInput {
   name: String
+  avatar: String
   gift: GiftUpdateOneWithoutRollerInput
 }
 
 input RollerUpdateManyMutationInput {
   name: String
+  avatar: String
 }
 
 input RollerUpdateOneWithoutGiftInput {
@@ -900,6 +931,7 @@ input RollerUpdateOneWithoutGiftInput {
 
 input RollerUpdateWithoutGiftDataInput {
   name: String
+  avatar: String
 }
 
 input RollerUpsertWithoutGiftInput {
@@ -952,6 +984,20 @@ input RollerWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
   gift: GiftWhereInput
   AND: [RollerWhereInput!]
   OR: [RollerWhereInput!]
